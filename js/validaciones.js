@@ -8,6 +8,10 @@ input.addEventListener('change', seleccionCurso);
 let boton = document.getElementById('btnCero');
 boton.addEventListener('click', ponerCero);
 
+document.getElementById('iCalculo1').addEventListener('change', ponerMedia);
+document.getElementById('iCalculo2').addEventListener('change', ponerMedia);
+document.getElementById('iCalculo3').addEventListener('change', ponerMedia);
+
 function seleccionCurso(){
   let seleccion = document.getElementById('sCurso');
   let primero = ['Programación', 'Base de datos', 'Sistemas informaticos', 'Fol', 'Lenguaje de marca', 'Entorno'];
@@ -54,4 +58,17 @@ function ponerCero(){
   document.getElementById('iCalculo1').value = 0;
   document.getElementById('iCalculo2').value = 0;
   document.getElementById('iCalculo3').value = 0;
+  while (document.getElementById('spanMedia').firstChild) {
+    document.getElementById('spanMedia').removeChild(document.getElementById('spanMedia').lastChild);
+  }
+  document.getElementById('spanMedia').appendChild(document.createTextNode('0'));
+}
+
+function ponerMedia(){
+  let suma = parseFloat(document.getElementById('iCalculo1').value) + parseFloat(document.getElementById('iCalculo2').value) + parseFloat(document.getElementById('iCalculo3').value);
+  let media = document.createTextNode(suma /= 3);
+  while (document.getElementById('spanMedia').firstChild) {
+    document.getElementById('spanMedia').removeChild(document.getElementById('spanMedia').lastChild);
+  }
+  document.getElementById('spanMedia').appendChild(media);
 }
